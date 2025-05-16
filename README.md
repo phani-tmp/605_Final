@@ -122,5 +122,4 @@ python main.py --device cuda --model mlp
 - Dataset excluded via .gitignore
 - Output files (*.out) should not be committed
 - Extend by adding models to main.py/get_model()
-```
 
