@@ -30,13 +30,14 @@ This project benchmarks various ML models on the CIFAR-100 dataset using:
    cd 605_Final
 Install dependencies (only for local testing)
 
-bash
-pip install -r requirements.txt
- Download CIFAR-100 Dataset
+```bash
+ pip install -r requirements.txt
+Download CIFAR-100 Dataset
 Before running any training jobs, download CIFAR-100 once:
 
-bash
+```bash
 python download_cifar.py
+
 Dataset is stored inside:
 
 ./cifar100_data/
@@ -46,25 +47,27 @@ These include 8 models:
 logreg, mlp, svm, knn, naive_bayes, decision_tree, random_forest, extra_trees
 
  How to Run:
-bash
+```bash
 chmod +x *.sh
 ./submit_all.sh
+
 Monitor with:
 
-bash
+```bash
 squeue -u $USER
 Run CPU-Optimized Versions
 Run each model individually with tuned CPU threads:
 
-bash
+```bash
 sbatch cpu_opt_logreg.sh
 sbatch cpu_opt_mlp.sh
 sbatch cpu_opt_svm.sh
 ...
- Run GPU-Optimized Versions (2 Models Only)
+
+Run GPU-Optimized Versions (2 Models Only)
 Only logreg and mlp are tuned with AMP and cuDNN:
 
-bash
+```bash
 sbatch gpu_opt_logreg.sh
 sbatch gpu_opt_mlp.sh
  Run CUDA Kernel Benchmark (Hardware-Specific)
@@ -72,7 +75,7 @@ A special CUDA version of logistic regression is implemented using Numba kernels
 
 To run:
 
-bash
+```bash
 sbatch cuda_logreg.sh
 This executes:
 
@@ -83,7 +86,7 @@ Reports GPU utilization, training time, memory used
  View Output Logs
 After jobs complete:
 
-bash
+```bash
 ls *.out
 cat cpu_opt_logreg_<jobid>.out
 cat gpu_opt_logreg_<jobid>.out
@@ -91,7 +94,7 @@ cat cuda_logreg_<jobid>.out
 Custom Manual Runs
 Run any model manually:
 
-bash
+```bash
 python main.py --device cpu --model svm
 python main.py --device cuda --model mlp
  Notes
