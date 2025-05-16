@@ -1,103 +1,126 @@
+Here's the complete, properly formatted `README.md` file in a clean notepad-style format that you can copy and paste directly:
+
+```
 # 605 Final Project – Benchmarking ML Models on Zaratan (CPU/GPU)
 
 This project benchmarks various ML models on the CIFAR-100 dataset using:
-- **Single-core CPU**
-- **Multi-core CPU (OneDNN/Thread-optimized)**
-- **GPU (PyTorch + AMP)**
-- **Custom CUDA kernel (Numba)**
+- Single-core CPU
+- Multi-core CPU (OneDNN/Thread-optimized)
+- GPU (PyTorch + AMP)
+- Custom CUDA kernel (Numba)
 
----
-
-##  Project Structure
+## Project Structure
 
 | File Type               | Description                                     |
 |-------------------------|-------------------------------------------------|
-| `main.py`              | Unified benchmark runner for all models         |
-| `main_cpu_opt_*.py`    | Optimized CPU scripts (OneDNN/Threads)          |
-| `main_gpu_opt_*.py`    | Optimized GPU scripts (AMP, cuDNN)              |
-| `cuda_main_logreg.py`  | CUDA kernel (Numba) for logistic regression     |
-| `.sh` files            | SLURM job scripts for Zaratan cluster           |
-| `submit_all.sh`        | Batch script to run all single/multicore jobs   |
-| `requirements.txt`     | Required dependencies                           |
+| main.py                | Unified benchmark runner for all models         |
+| main_cpu_opt_*.py      | Optimized CPU scripts (OneDNN/Threads)          |
+| main_gpu_opt_*.py      | Optimized GPU scripts (AMP, cuDNN)              |
+| cuda_main_logreg.py    | CUDA kernel (Numba) for logistic regression     |
+| *.sh files             | SLURM job scripts for Zaratan cluster           |
+| submit_all.sh          | Batch script to run all single/multicore jobs   |
+| requirements.txt       | Required dependencies                           |
 
----
+## Setup
 
-##  Setup
+1. Clone the repo:
+```bash
+git clone https://github.com/phani-tmp/605_Final.git
+cd 605_Final
+```
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/phani-tmp/605_Final.git
-   cd 605_Final
-Install dependencies (only for local testing)
+2. Install dependencies (only for local testing):
+```bash
+pip install -r requirements.txt
+```
 
-   ```bash
-    pip install -r requirements.txt
-Download CIFAR-100 Dataset
+## Download CIFAR-100 Dataset
+
 Before running any training jobs, download CIFAR-100 once:
-
 ```bash
 python download_cifar.py
+```
 
-Dataset is stored inside:
-
+Dataset will be stored in:
+```
 ./cifar100_data/
- Run All Single-Core & Multi-Core Benchmarks
-These include 8 models:
+```
 
-logreg, mlp, svm, knn, naive_bayes, decision_tree, random_forest, extra_trees
+## Run All Benchmarks
 
- How to Run:
+Includes 8 models:
+- logreg
+- mlp
+- svm
+- knn
+- naive_bayes
+- decision_tree
+- random_forest
+- extra_trees
+
+### How to Run:
 ```bash
 chmod +x *.sh
 ./submit_all.sh
+```
 
-Monitor with:
-
+Monitor jobs:
 ```bash
 squeue -u $USER
-Run CPU-Optimized Versions
-Run each model individually with tuned CPU threads:
+```
 
+## CPU-Optimized Versions
+
+Run individual models with tuned CPU threads:
 ```bash
 sbatch cpu_opt_logreg.sh
 sbatch cpu_opt_mlp.sh
 sbatch cpu_opt_svm.sh
-...
+# ... and so on for other models
+```
 
-Run GPU-Optimized Versions (2 Models Only)
-Only logreg and mlp are tuned with AMP and cuDNN:
+## GPU-Optimized Versions
 
+Available for logreg and mlp with AMP/cuDNN:
 ```bash
 sbatch gpu_opt_logreg.sh
 sbatch gpu_opt_mlp.sh
- Run CUDA Kernel Benchmark (Hardware-Specific)
-A special CUDA version of logistic regression is implemented using Numba kernels.
+```
 
-To run:
+## CUDA Kernel Benchmark
 
+Special Numba implementation of logistic regression:
 ```bash
 sbatch cuda_logreg.sh
-This executes:
+```
 
-Pure CUDA matrix multiplication, sigmoid, gradient updates
+Features:
+- Custom CUDA matrix operations
+- GPU utilization metrics
+- Memory usage reporting
 
-Reports GPU utilization, training time, memory used
+## Checking Results
 
- View Output Logs
-After jobs complete:
-
+View output logs after job completion:
 ```bash
 ls *.out
 cat cpu_opt_logreg_<jobid>.out
 cat gpu_opt_logreg_<jobid>.out
 cat cuda_logreg_<jobid>.out
-Custom Manual Runs
-Run any model manually:
+```
 
+## Manual Execution
+
+Run models directly:
 ```bash
 python main.py --device cpu --model svm
 python main.py --device cuda --model mlp
- Notes
-cifar100_data/ is excluded from GitHub using .gitignore
+```
 
-Easy to extend: Just add your model logic to main.py or get_model()
+## Notes
+
+- Dataset excluded via .gitignore
+- Output files (*.out) should not be committed
+- Extend by adding models to main.py/get_model()
+```
+
