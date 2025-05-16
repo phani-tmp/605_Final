@@ -51,7 +51,6 @@ Dataset will be stored in:
 Includes 8 models:
 - logreg
 - mlp
-- svm
 - knn
 - naive_bayes
 - decision_tree
