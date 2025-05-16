@@ -1,33 +1,33 @@
-Here's the complete, properly formatted `README.md` file in a clean notepad-style format that you can copy and paste directly:
-
-```
 # 605 Final Project – Benchmarking ML Models on Zaratan (CPU/GPU)
 
 This project benchmarks various ML models on the CIFAR-100 dataset using:
-- Single-core CPU
-- Multi-core CPU (OneDNN/Thread-optimized)
-- GPU (PyTorch + AMP)
-- Custom CUDA kernel (Numba)
+- **Single-core CPU**
+- **Multi-core CPU (OneDNN/Thread-optimized)**
+- **GPU (PyTorch + AMP)**
+- **Custom CUDA kernel (Numba)**
+
+---
 
 ## Project Structure
 
 | File Type               | Description                                     |
 |-------------------------|-------------------------------------------------|
-| main.py                | Unified benchmark runner for all models         |
-| main_cpu_opt_*.py      | Optimized CPU scripts (OneDNN/Threads)          |
-| main_gpu_opt_*.py      | Optimized GPU scripts (AMP, cuDNN)              |
-| cuda_main_logreg.py    | CUDA kernel (Numba) for logistic regression     |
-| *.sh files             | SLURM job scripts for Zaratan cluster           |
-| submit_all.sh          | Batch script to run all single/multicore jobs   |
-| requirements.txt       | Required dependencies                           |
+| `main.py`              | Unified benchmark runner for all models         |
+| `main_cpu_opt_*.py`    | Optimized CPU scripts (OneDNN/Threads)          |
+| `main_gpu_opt_*.py`    | Optimized GPU scripts (AMP, cuDNN)              |
+| `cuda_main_logreg.py`  | CUDA kernel (Numba) for logistic regression     |
+| `.sh` files            | SLURM job scripts for Zaratan cluster           |
+| `submit_all.sh`        | Batch script to run all single/multicore jobs   |
+| `requirements.txt`     | Required dependencies                           |
+
+---
 
 ## Setup
 
-1. Clone the repo:
-```bash
-git clone https://github.com/phani-tmp/605_Final.git
-cd 605_Final
-```
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/phani-tmp/605_Final.git
+   cd 605_Final
 
 2. Install dependencies (only for local testing):
 ```bash
