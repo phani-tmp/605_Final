@@ -30,8 +30,8 @@ This project benchmarks various ML models on the CIFAR-100 dataset using:
    cd 605_Final
 Install dependencies (only for local testing)
 
-```bash
- pip install -r requirements.txt
+   ```bash
+    pip install -r requirements.txt
 Download CIFAR-100 Dataset
 Before running any training jobs, download CIFAR-100 once:
 
