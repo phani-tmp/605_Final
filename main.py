@@ -435,7 +435,7 @@ def train(device, model_type):
         optimizer = optim.SGD(model.parameters(), lr=0.01)
 
         print(f"\nTraining on: {device}")
-        print(f"🧠 CPU Threads: {torch.get_num_threads()} (SLURM_CPUS_PER_TASK = {torch.get_num_threads()})")
+        print(f" CPU Threads: {torch.get_num_threads()} (SLURM_CPUS_PER_TASK = {torch.get_num_threads()})")
 
         start_time = time.time()
         for epoch in range(5):
@@ -448,11 +448,11 @@ def train(device, model_type):
                 loss.backward()
                 optimizer.step()
                 total_loss += loss.item()
-            print(f"📘 Epoch {epoch+1}, Loss: {total_loss:.2f}")
+            print(f" Epoch {epoch+1}, Loss: {total_loss:.2f}")
         end_time = time.time()
 
-        print(f"✅ Training completed in {(end_time - start_time):.2f} seconds")
-        print(f"📦 Memory used: {psutil.Process().memory_info().rss / 1e6:.2f} MB")
+        print(f" Training completed in {(end_time - start_time):.2f} seconds")
+        print(f" Memory used: {psutil.Process().memory_info().rss / 1e6:.2f} MB")
 
     else:
         print(f"Training Scikit-learn model: {model_type}")
@@ -469,9 +469,9 @@ def train(device, model_type):
         preds = model.predict(X_test)
         acc = accuracy_score(y_test, preds)
 
-        print(f"✅ Training completed in {(end_time - start_time):.2f} seconds")
-        print(f"🎯 Accuracy: {acc*100:.2f}%")
-        print(f"📦 Memory used: {psutil.Process().memory_info().rss / 1e6:.2f} MB")
+        print(f" Training completed in {(end_time - start_time):.2f} seconds")
+        print(f" Accuracy: {acc*100:.2f}%")
+        print(f" Memory used: {psutil.Process().memory_info().rss / 1e6:.2f} MB")
 
 
 if __name__ == "__main__":
@@ -482,6 +482,6 @@ if __name__ == "__main__":
 
     device = torch.device(args.device if args.device == "cuda" and torch.cuda.is_available() else "cpu")
     train(device, args.model)
-    print("🔥 Job done.")
+    print(" Job done.")
     import sys; sys.stdout.flush()
 

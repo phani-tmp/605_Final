@@ -49,9 +49,9 @@ def main():
     total_images, elapsed = train_torch(model, train, torch.device('cpu'), args.threads, args.epochs)
     throughput = total_images / elapsed
 
-    print(f"✅ Training Time: {elapsed:.2f} seconds")
-    print(f"🚀 Throughput: {throughput:,.1f} img/s")
-    print("📦 Peak RSS: %.1f MB" % (psutil.Process().memory_info().rss / 1e6))
+    print(f"Training Time: {elapsed:.2f} seconds")
+    print(f" Throughput: {throughput:,.1f} img/s")
+    print(" Peak RSS: %.1f MB" % (psutil.Process().memory_info().rss / 1e6))
 
 if __name__ == "__main__":
     main()

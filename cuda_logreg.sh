@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=cuda_logreg
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:a100:1               # ✅ explicitly mention GPU type
+#SBATCH --gres=gpu:a100:1               
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=16G
 #SBATCH --time=00:30:00

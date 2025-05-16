@@ -11,7 +11,7 @@ from torch import nn, optim
 from torchvision import transforms
 
 class LogisticRegression(nn.Module):
-    def __init__(self):  # ✅ double underscores here
+    def __init__(self):  
         super().__init__()
         self.linear = nn.Linear(32 * 32 * 3, 100)
 
