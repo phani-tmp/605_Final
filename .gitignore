@@ -1,0 +1,25 @@
+# Ignore CIFAR-100 dataset
+cifar100_data/
+!cifar100_data/*.sh  # keep download script if any
+
+# Ignore MNIST raw binaries
+data/MNIST/raw/
+!data/**/*.sh
+
+# Ignore outputs and logs
+*.out
+slurm-*.out
+
+# Bytecode and system files
+__pycache__/
+*.pyc
+*.pyo
+*.~  
+.DS_Store
+
+# VS Code & Jupyter garbage
+.ipynb_checkpoints/
+.vscode/
+
+# Environment files (optional)
+.env
